@@ -4,6 +4,8 @@
 using namespace std;
 
 string str1, str2;
+int numVals1 = 0;
+int numVals2 = 0;
 
 string toLower(string str) {
 
@@ -15,42 +17,32 @@ string toLower(string str) {
     return str;
 }
 
-bool strcmp_case_insensitive(string a, string b) {
+int strcmp_case_insensitive(string a, string b) {
 
-    if(toLower(a) == toLower(b)) {
+    a = toLower(a);
+    b = toLower(b);
 
-        return true;
+    if(a == b) {
+        return 0;
+    } 
+
+    else if(a < b) {
+        return -1;
     }
-
-    return false;
-}
-
-
-
-int main() {
-
-    cout << "Enter first string: " << endl;
-    cin >> str1;
-    cout << "Enter second string: " << endl;
-    cin >> str2;
-
-    if(str1.empty() || str2.empty()) {
-
-        cout << " One or both strings are empty" << endl;
     
-        return 1;
-    }
-
-    
-    
-    if(strcmp_case_insensitive(str1, str2)) {
-
-        cout << "The strings are equal (case insensitive)." << endl;
-    }
     else {
 
-        cout << "The strings are not equal." << endl;
+        return 1;
     }
+    
+}
+int main() {
+    cout << "Enter first string: ";
+    cin >> str1;
+    cout << "Enter second string: ";
+    cin >> str2;
+    int result = strcmp_case_insensitive(str1, str2);
+    
 
     return 0;
 }
