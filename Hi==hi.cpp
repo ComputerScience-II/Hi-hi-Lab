@@ -21,37 +21,35 @@ int strcmp_case_insensitive(string a, string b) {
     a = toLower(a);
     b = toLower(b);
     
-    for(char &x: a) {
+    numVals1 = 0;
+    numVals2 = 0;
 
-        numVals1 += int(x);
-    }
+    for(char &x: a) numVals1 += int(x);
+    for(char &y: b) numVals2 += int(y);
 
-    for(char &y: b) {
-
-        numVals2 += int(y);
-    }
-
-    if(a == b) {
-        return 0;
-    } 
-
-    else if(a < b) {
+    if(a.size() == b.size()) {
         
-        return -1;
+        for (int i = 0; i < a.size() && i < b.size(); i++) {
+            if (a[i] != b[i]) {
+                return int(a[i]) - int(b[i]);
+            }
+        }
     }
-    
     else {
-
-        return 1;
+        return a.size() - b.size();
     }
-    
+
+    return 0;
 }
 
 void runEdgeCases() {
 
-    assert(strcmp_case_insensitive("String one", "string two") == -1);
-    assert(strcmp_case_insensitive("String one", "string one") == 0);
-    assert(strcmp_case_insensitive("String two", "string one") == 1);
+    assert(strcmp_case_insensitive("APple", "apple") == 0);
+    assert(strcmp_case_insensitive("banana", "banana") == 0);
+    assert(strcmp_case_insensitive("grape", "apple") > 0);
+    assert(strcmp_case_insensitive("apple", "grape") < 0);
+    assert(strcmp_case_insensitive("cat", "cater") < 0);
+    assert(strcmp_case_insensitive("cater", "cat") > 0);
 
 }
 
