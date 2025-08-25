@@ -20,6 +20,8 @@ string toLower(string str) {
 int strcmp_case_insensitive(string a, string b) {
     a = toLower(a);
     b = toLower(b);
+
+    int diff = 0;
     
     numVals1 = 0;
     numVals2 = 0;
@@ -31,9 +33,11 @@ int strcmp_case_insensitive(string a, string b) {
         
         for (int i = 0; i < a.size() && i < b.size(); i++) {
             if (a[i] != b[i]) {
-                return int(a[i]) - int(b[i]);
+                
+                diff += int(a[i]) - int(b[i]);
             }
         }
+        return diff;
     }
     else {
         return a.size() - b.size();
